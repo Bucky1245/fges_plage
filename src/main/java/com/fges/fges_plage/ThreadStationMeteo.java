@@ -12,9 +12,11 @@ package com.fges.fges_plage;
 public class ThreadStationMeteo extends Thread {
     
     protected Station station;
+    protected DonneeStationObservable observable;
     
-    public ThreadStationMeteo(Station station){
+    public ThreadStationMeteo(Station station, DonneeStationObservable observable){
         this.station = station;
+        this.observable = observable;
     }
     
     public void run(){
@@ -25,6 +27,8 @@ public class ThreadStationMeteo extends Thread {
             System.out.println("Température air : "+donnees.getTemperatureAir());
             System.out.println("Vent : "+donnees.getVent());
             System.out.println("Bactéries par 100ml : "+donnees.getNbBacteriesPar100ml());
+            //notifier observeurs
+            observable.notifierObservateurs(donnees);
         }
     }
 }

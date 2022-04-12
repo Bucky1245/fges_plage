@@ -6,13 +6,15 @@
 package com.fges.fges_plage.widgets;
 
 import com.fges.fges_plage.DonneeStation;
+import com.fges.fges_plage.DonneeStationObserver;
+
 import java.io.PrintStream;
 
 /**
  *
  * @author julie.jacques
  */
-public abstract class Widget {
+public abstract class Widget implements DonneeStationObserver {
     
     protected DonneeStation derniereDonnee = null;
     
@@ -22,4 +24,9 @@ public abstract class Widget {
         this.derniereDonnee = donneeInit;
     }
     
+    @Override
+    public void actualiser(DonneeStation donneeStation)
+    {
+        derniereDonnee = donneeStation;
+    }
 }
